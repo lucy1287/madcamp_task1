@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/item_border"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp">
+
+    <TextView
+        android:id="@+id/profileNameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/profilePhoneNumTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/profileNameTv"
+        app:layout_constraintStart_toStartOf="@+id/profileNameTv"
+        tools:text="PhoneNum" />
+
+    <TextView
+        android:id="@+id/profileGroupNameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginStart="76dp"
+        app:layout_constraintStart_toEndOf="@+id/profilePhoneNumTv"
+        app:layout_constraintTop_toTopOf="@+id/profilePhoneNumTv"
+        tools:text="GroupName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
