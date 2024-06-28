@@ -1,11 +1,12 @@
 package com.example.madcamp_task1.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madcamp_task1.databinding.ItemImageBinding
 
-class ImageAdapter(private val images: List<String>) :
+class ImageAdapter(private val images: ArrayList<Uri?>) :
     RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -27,8 +28,8 @@ class ImageAdapter(private val images: List<String>) :
     class ImageViewHolder(private val binding : ItemImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(image: String) {
-
+        fun bind(imageUri: Uri?) {
+            binding.imageView.setImageURI(imageUri)
         }
     }
 }
