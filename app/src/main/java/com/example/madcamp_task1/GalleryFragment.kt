@@ -22,6 +22,11 @@ class GalleryFragment : Fragment () {
 
     private val events = listOf(
         Event("이탈리아 여행", "와인 투어와 중세 도시 여행", "ddd"),
+        Event("생일 파티", "오랜만에 모여서 생일 파티", "ddd"),
+        Event("생일 파티", "오랜만에 모여서 생일 파티", "ddd"),
+        Event("생일 파티", "오랜만에 모여서 생일 파티", "ddd"),
+        Event("생일 파티", "오랜만에 모여서 생일 파티", "ddd"),
+        Event("생일 파티", "오랜만에 모여서 생일 파티", "ddd"),
         Event("생일 파티", "오랜만에 모여서 생일 파티", "ddd")
     );
 

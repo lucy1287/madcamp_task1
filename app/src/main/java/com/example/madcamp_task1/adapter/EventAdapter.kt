@@ -1,10 +1,15 @@
 package com.example.madcamp_task1.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.madcamp_task1.GalleryActivity
 import com.example.madcamp_task1.data.Event
 import com.example.madcamp_task1.databinding.ItemEventBinding
+
 
 class EventAdapter(private val events: List<Event>) :
     RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
@@ -21,6 +26,10 @@ class EventAdapter(private val events: List<Event>) :
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         holder.bind(events[position])
+        holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView?.context, GalleryActivity::class.java)
+            ContextCompat.startActivity(holder.itemView.context, intent, null)
+        }
     }
 
     override fun getItemCount(): Int = events.size
