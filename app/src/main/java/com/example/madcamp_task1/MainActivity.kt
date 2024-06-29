@@ -3,32 +3,53 @@ package com.example.madcamp_task1
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.madcamp_task1.databinding.ActivityMainBinding
+import com.google.android.material.tabs.TabLayout
+
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        if (findViewById<View>(R.id.fragment_gallery) != null) {
-            if (savedInstanceState == null) {
-                // GalleryFragment가 이미 추가되었는지 확인
-                if (supportFragmentManager.findFragmentById(R.id.fragment_gallery) == null) {
-                    val galleryFragment = GalleryFragment()
+        val tabLayout : TabLayout = findViewById(R.id.tab_layout)
+        val profileFragment: Fragment = ProfileFragment()
+        val galleryFragment: Fragment = GalleryFragment()
+//        val mapFragment: Fragment = MapFragment()
 
-                    val fragmentManager: FragmentManager = supportFragmentManager
-                    val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-                    fragmentTransaction.add(R.id.fragment_gallery, galleryFragment)
-                    fragmentTransaction.commit()
+        supportFragmentManager.beginTransaction().replace(R.id.main_view, galleryFragment).commit()
+        // default tab
+
+        tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                when(tab.position) {
+                    0 -> {
+                        // Profile Tab
+                        supportFragmentManager.beginTransaction().replace(R.id.main_view, profileFragment).commit()
+                    }
+                    1 -> {
+                        // Gallery Tab
+                        supportFragmentManager.beginTransaction().replace(R.id.main_view, galleryFragment).commit()
+                    }
+                    2 -> {
+                        // Map Tab
+//                        supportFragmentManager.beginTransaction().replace(R.id.main_view, mapFragment).commit()
+                    }
                 }
             }
-        }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                // No event
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                // No event
+            }
+        })
+
     }
 }

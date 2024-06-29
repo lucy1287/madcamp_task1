@@ -28,6 +28,7 @@ class GroupChangeActivity : AppCompatActivity() {
         binding.submitButton.setOnClickListener {
             val newgroupname = binding.groupNameEditText.text.toString()
             val returnIntent = Intent().apply {
+                putExtra("name", name)
                 putExtra("phoneNum", phonenum)
                 putExtra("groupName", newgroupname)
             }
