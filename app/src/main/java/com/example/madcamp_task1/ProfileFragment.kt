@@ -11,20 +11,30 @@ import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-//import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.madcamp_task1.adapter.ProfileRvAdapter
 import com.example.madcamp_task1.data.Profile
+import com.example.madcamp_task1.data.AppDatabase
 import com.example.madcamp_task1.databinding.FragmentProfileBinding
+import com.example.madcamp_task1.repository.ProfileRepository
+import com.example.madcamp_task1.viewmodel.ProfileViewModel
+import com.example.madcamp_task1.viewmodel.ProfileViewModelFactory
 
-
-class ProfileFragment : Fragment () {
+class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
+    private val profileViewModel: ProfileViewModel by viewModels {
+        val database = AppDatabase.getDatabase(requireContext())
+        val repository = ProfileRepository(database.profileDao())
+        ProfileViewModelFactory(repository)
+    }
     private var profileList: ArrayList<Profile> = ArrayList()
+    // For data manage
+
     companion object {
         private const val READ_CONTACTS_PERMISSION_CODE = 1
         const val REQUEST_CODE_GROUP_NAME = 1
@@ -37,6 +47,7 @@ class ProfileFragment : Fragment () {
 
         binding = FragmentProfileBinding.inflate(layoutInflater)
 
+        // Getting Permission for contact data
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_CONTACTS)
             != PackageManager.PERMISSION_GRANTED
         ) {
@@ -56,11 +67,12 @@ class ProfileFragment : Fragment () {
     }
 
     private fun initializeViews(){
-        profileList = profileList.distinct() as ArrayList<Profile>
+        profileList = profileList.distinct().toMutableList() as ArrayList<Profile>
         profileList.sortBy { it.name }
 
         val adapter = ProfileRvAdapter(profileList, object: ProfileRvAdapter.OnItemClickListener {
             override fun onItemClick(profile: Profile) {
+                // If user clicks item in Recyclerview, pop up new page with user info
                 val intent = Intent(requireContext(), GroupChangeActivity::class.java).apply {
                     putExtra("name", profile.name)
                     putExtra("phoneNum", profile.phonenum)
@@ -72,6 +84,14 @@ class ProfileFragment : Fragment () {
 
         binding.profileRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.profileRecyclerView.adapter = adapter
+
+        profileViewModel.allProfiles.observe(viewLifecycleOwner) { profiles ->
+            profiles?.let {
+                profileList.clear()
+                profileList.addAll(it)
+                adapter.notifyDataSetChanged()
+            }
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -81,16 +101,15 @@ class ProfileFragment : Fragment () {
             val phonenum = data?.getStringExtra("phoneNum")
             val newgroupname = data?.getStringExtra("groupName")
             if (newgroupname != null && phonenum != null) {
-                // phoneNum에 해당하는 프로필을 찾고 그룹 이름을 업데이트
+                // find profile for phoneNum and update groupname
                 val profile = profileList.find { it.phonenum == phonenum }
                 profile?.let {
                     it.groupname = newgroupname
-                    binding.profileRecyclerView.adapter?.notifyDataSetChanged() // Adapter에 데이터 변경을 알림
+                    profileViewModel.updateProfile(it)
                 }
             }
         }
     }
-
 
     @SuppressLint("Range")
     private fun loadContacts() {
@@ -111,7 +130,8 @@ class ProfileFragment : Fragment () {
                     val number =
                         it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
 
-                    profileList.add(Profile(name, normalizePhoneNumber(number), "None"))
+                    val profile = Profile(name = name, phonenum = normalizePhoneNumber(number), groupname = "None")
+                    profileViewModel.insertProfile(profile)
                 }
             }
             it.close()
@@ -141,15 +161,7 @@ class ProfileFragment : Fragment () {
     }
 
     private fun normalizePhoneNumber(phoneNumber: String): String {
-        // Remove all non-numeric characters
-        val normalized = phoneNumber.replace("[^\\d]".toRegex(), "")
-
-        // Format to "010-xxxx-xxxx"
-        return if (normalized.length == 11) {
-            "${normalized.substring(0, 3)}-${normalized.substring(3, 7)}-${normalized.substring(7)}"
-        } else {
-            // If the length is not exactly 11 digits, return as it is (handle edge cases)
-            normalized
-        }
+        // Remove all non-numeric characters from the phone number
+        return phoneNumber.replace("[^0-9]".toRegex(), "")
     }
 }
