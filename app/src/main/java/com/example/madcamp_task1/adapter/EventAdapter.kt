@@ -4,10 +4,9 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madcamp_task1.GalleryActivity
-import com.example.madcamp_task1.data.Event
+import com.example.madcamp_task1.roomdb.Event
 import com.example.madcamp_task1.databinding.ItemEventBinding
 
 
