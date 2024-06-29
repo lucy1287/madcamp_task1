@@ -6,29 +6,29 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [Event::class, Image::class], version = 1, exportSchema = false)
+@Database(entities = [Event::class, Image::class, Profile::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun eventDao() : EventDao
-    abstract fun imageDao() : ImageDao
+    abstract fun eventDao(): EventDao
+    abstract fun imageDao(): ImageDao
+    abstract fun profileDao(): ProfileDao
 
-    companion object{
+    companion object {
         @Volatile
-        private var instance : AppDatabase ?= null
+        private var INSTANCE: AppDatabase? = null
 
-
-        fun getInstance(context : Context) : AppDatabase? {
-            if(instance == null){
-                synchronized(AppDatabase::class){
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        AppDatabase::class.java,
-                        "event_database"
-                    ).build()
-                }
+        fun getInstance(context: Context): AppDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    "app_database"
+                )
+                    .build()
+                INSTANCE = instance
+                instance
             }
-            return instance
         }
     }
 }
