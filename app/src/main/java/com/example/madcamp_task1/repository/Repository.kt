@@ -15,7 +15,7 @@ class ProfileRepository(private val profileDao: ProfileDao) {
         profileDao.updateProfile(profile)
     }
 
-    suspend fun deleteProfile(profile: Profile) {
-        profileDao.deleteProfile(profile)
-    }
+//    suspend fun deleteProfile(profile: Profile) {
+//        profileDao.deleteProfile(profile)
+//    }
 }

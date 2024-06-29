@@ -18,7 +18,7 @@ class ProfileViewModel(private val repository: ProfileRepository) : ViewModel() 
         repository.updateProfile(profile)
     }
 
-    fun deleteProfile(profile: Profile) = viewModelScope.launch {
-        repository.deleteProfile(profile)
-    }
+//    fun deleteProfile(profile: Profile) = viewModelScope.launch {
+//        repository.deleteProfile(profile)
+//    }
 }

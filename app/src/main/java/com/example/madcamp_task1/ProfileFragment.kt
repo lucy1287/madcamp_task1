@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.madcamp_task1.adapter.ProfileRvAdapter
 import com.example.madcamp_task1.data.Profile
@@ -28,7 +27,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private val profileViewModel: ProfileViewModel by viewModels {
-        val database = AppDatabase.getDatabase(requireContext())
+        val database = AppDatabase.getInstance(requireContext())
         val repository = ProfileRepository(database.profileDao())
         ProfileViewModelFactory(repository)
     }
@@ -82,8 +81,9 @@ class ProfileFragment : Fragment() {
             }
         })
 
-        binding.profileRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.profileRecyclerView.adapter = adapter
+        // fixing autoMeasure()
+        binding.profileRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         profileViewModel.allProfiles.observe(viewLifecycleOwner) { profiles ->
             profiles?.let {
@@ -101,10 +101,11 @@ class ProfileFragment : Fragment() {
             val phonenum = data?.getStringExtra("phoneNum")
             val newgroupname = data?.getStringExtra("groupName")
             if (newgroupname != null && phonenum != null) {
-                // find profile for phoneNum and update groupname
+                // find profile for phonenum and update groupname
                 val profile = profileList.find { it.phonenum == phonenum }
                 profile?.let {
-                    it.groupname = newgroupname
+                    if (newgroupname == "") { it.groupname = "None" } // default groupname
+                    else { it.groupname = newgroupname }
                     profileViewModel.updateProfile(it)
                 }
             }

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [Profile::class], version = 2, exportSchema = false)
+@Database(entities = [Profile::class], version = 4, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun profileDao(): ProfileDao
 
@@ -15,15 +15,15 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context): AppDatabase {
+        fun getInstance(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "profile_database"
+                    "app_database"
                 )
-                .addMigrations(MIGRATION_1_2)
-                .build()
+                    .addMigrations(MIGRATION_1_2)
+                    .build()
                 INSTANCE = instance
                 instance
             }
@@ -31,10 +31,10 @@ abstract class AppDatabase : RoomDatabase() {
     }
 }
 
-val MIGRATION_1_2 = object : Migration(1, 2) {
+val MIGRATION_1_2 = object : Migration(3, 4) {
     override fun migrate(database: SupportSQLiteDatabase) {
         // make backup table for previous schema
-        database.execSQL("CREATE TABLE profiles_backup (name TEXT PRIMARY KEY NOT NULL, phonenum TEXT NOT NULL, groupname TEXT DEFAULT 'None' NOT NULL)")
+        database.execSQL("CREATE TABLE profiles_backup (name TEXT NOT NULL, phonenum TEXT PRIMARY KEY NOT NULL, groupname TEXT DEFAULT 'None' NOT NULL)")
 
         database.execSQL("INSERT INTO profiles_backup (name, phonenum, groupname) SELECT name, phonenum, groupname FROM profiles")
 

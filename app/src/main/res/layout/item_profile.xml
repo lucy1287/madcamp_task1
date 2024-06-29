@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:layout_marginStart="76dp"
+        android:layout_marginStart="200dp"
         app:layout_constraintStart_toEndOf="@+id/profilePhoneNumTv"
         app:layout_constraintTop_toTopOf="@+id/profilePhoneNumTv"
         tools:text="GroupName" />
