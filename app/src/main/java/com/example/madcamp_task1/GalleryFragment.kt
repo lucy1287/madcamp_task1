@@ -26,7 +26,6 @@ import java.util.*
 class GalleryFragment : Fragment () {
 
     private lateinit var binding: FragmentGalleryBinding
-    private var db: AppDatabase? = null
     private lateinit var eventViewModel: EventViewModel
     private lateinit var events: LiveData<List<Event>>
 

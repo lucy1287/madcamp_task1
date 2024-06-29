@@ -24,9 +24,13 @@ class EventAdapter(private val events: List<Event>) :
     }
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
-        holder.bind(events[position])
+        val event = events[position]
+        holder.bind(event)
+
         holder.itemView.setOnClickListener{
+            val clickedEventNo = event.eventNo
             val intent = Intent(holder.itemView?.context, GalleryActivity::class.java)
+            intent.putExtra("eventNo", clickedEventNo)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }
