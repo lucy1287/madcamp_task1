@@ -18,16 +18,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (findViewById<View>(R.id.fragment_gallery) != null) {
-            if (savedInstanceState != null) {
-                return
+            if (savedInstanceState == null) {
+                // GalleryFragment가 이미 추가되었는지 확인
+                if (supportFragmentManager.findFragmentById(R.id.fragment_gallery) == null) {
+                    val galleryFragment = GalleryFragment()
+
+                    val fragmentManager: FragmentManager = supportFragmentManager
+                    val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                    fragmentTransaction.add(R.id.fragment_gallery, galleryFragment)
+                    fragmentTransaction.commit()
+                }
             }
-
-            val galleryFragment = GalleryFragment()
-
-            val fragmentManager: FragmentManager = supportFragmentManager
-            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.fragment_gallery, galleryFragment)
-            fragmentTransaction.commit()
         }
     }
 }
