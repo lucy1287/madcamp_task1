@@ -16,8 +16,6 @@ import androidx.room.TypeConverter
 import com.example.madcamp_task1.roomdb.Game
 import com.example.madcamp_task1.roomdb.GameViewModel
 import com.example.madcamp_task1.roomdb.GameViewModelFactory
-import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
-import com.google.gson.Gson
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
@@ -78,7 +76,7 @@ class CalendarFragment : Fragment() {
             val gameDateStr = data.getStringExtra("selectedDate")
             val gameMembers = data.getStringArrayListExtra("gameMembers") // Should Convert to JSON
 
-            if (!gameTitle.isNullOrBlank() && !gameScore.isNullOrBlank() && !gameDateStr.isNullOrBlank() ) {
+            if (!gameTitle.isNullOrBlank() && !gameDateStr.isNullOrBlank() ) {
                 val gameDate = LocalDate.parse(gameDateStr)  // Parse String to LocalDate
                 val calendarDay = CalendarDay.from(gameDate)
                 events[calendarDay] = gameTitle
@@ -89,7 +87,7 @@ class CalendarFragment : Fragment() {
                 val game = Game(
                     gameDate = gameDateStr,
                     gameTitle = gameTitle,
-                    gameScore = gameScore,
+                    gameScore = gameScore ?: "",
                     gameMembers = gameMembers ?: ArrayList()
                 )
                 gameViewModel.insert(game)

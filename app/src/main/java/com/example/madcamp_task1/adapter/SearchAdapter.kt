@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.madcamp_task1.databinding.ItemProfileBinding
 import com.example.madcamp_task1.roomdb.Profile
 
-class SearchAdapter : ListAdapter<Profile, SearchAdapter.ProfileViewHolder>(ProfileDiffCallback()) {
+class SearchAdapter(private val onProfileClick: (Profile) -> Unit) : ListAdapter<Profile, SearchAdapter.ProfileViewHolder>(ProfileDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {
         val binding = ItemProfileBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ProfileViewHolder(binding)
+        return ProfileViewHolder(binding, onProfileClick)
     }
 
     override fun onBindViewHolder(holder: ProfileViewHolder, position: Int) {
@@ -20,11 +20,15 @@ class SearchAdapter : ListAdapter<Profile, SearchAdapter.ProfileViewHolder>(Prof
         holder.bind(profile)
     }
 
-    class ProfileViewHolder(private val binding: ItemProfileBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ProfileViewHolder(private val binding: ItemProfileBinding, private val onProfileClick: (Profile) -> Unit) : RecyclerView.ViewHolder(binding.root) {
         fun bind(profile: Profile) {
             binding.profileNameTv.text = profile.name
             binding.profilePhoneNumTv.text = profile.phonenum
             binding.profileGroupNameTv.text = profile.groupname
+
+            binding.root.setOnClickListener {
+                onProfileClick(profile)
+            }
         }
     }
 
