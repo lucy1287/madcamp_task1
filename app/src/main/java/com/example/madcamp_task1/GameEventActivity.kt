@@ -1,34 +1,53 @@
 package com.example.madcamp_task1
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.madcamp_task1.adapter.SearchAdapter
-import com.example.madcamp_task1.databinding.FragmentManageBinding
-import com.example.madcamp_task1.roomdb.*
+import com.example.madcamp_task1.databinding.ActivityGameeventBinding
+import com.example.madcamp_task1.roomdb.Profile
+import com.example.madcamp_task1.roomdb.ProfileViewModel
 
-class ManageFragment : Fragment() {
+class GameEventActivity : AppCompatActivity() {
 
-    private lateinit var binding : FragmentManageBinding
+    private lateinit var editTextEventTitle: EditText
+    private lateinit var buttonSaveEvent: Button
+    private lateinit var selectedDate: String
+
+    private lateinit var binding : ActivityGameeventBinding
     private val profileViewModel: ProfileViewModel by viewModels()
     private lateinit var searchResults : LiveData<List<Profile>>
     private lateinit var searchAdapter: SearchAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentManageBinding.inflate(layoutInflater)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityGameeventBinding.inflate(layoutInflater)
         initializeViews()
         initSearchView()
-        return binding.root
+
+        editTextEventTitle = binding.editTextEventTitle
+        buttonSaveEvent = binding.buttonSaveEvent
+
+        selectedDate = intent.getStringExtra("selectedDate") ?: ""
+
+        buttonSaveEvent.setOnClickListener {
+            val eventTitle = editTextEventTitle.text.toString()
+            val resultIntent = Intent()
+            resultIntent.putExtra("eventTitle", eventTitle)
+            resultIntent.putExtra("selectedDate", selectedDate)
+            setResult(Activity.RESULT_OK, resultIntent)
+            finish()
+        }
+
+        setContentView(binding.root)
     }
 
     fun initializeViews() {
@@ -43,12 +62,12 @@ class ManageFragment : Fragment() {
 //        binding.rvSearchResultList.adapter = searchAdapter
 
         searchAdapter = SearchAdapter()
-        binding.rvSearchResultList.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvSearchResultList.layoutManager = LinearLayoutManager(this)
         binding.rvSearchResultList.adapter = searchAdapter
 
         searchResults = profileViewModel.allProfiles
 
-        searchResults.observe(viewLifecycleOwner, { searchResultsList ->
+        searchResults.observe(this, { searchResultsList ->
             searchAdapter.submitList(searchResultsList)
         })
     }
@@ -72,7 +91,7 @@ class ManageFragment : Fragment() {
     private fun searchDatabase(query: String) {
         val searchQuery = "%$query%"
 
-        profileViewModel.searchDatabase(searchQuery).observe(viewLifecycleOwner, { results ->
+        profileViewModel.searchDatabase(searchQuery).observe(this, { results ->
             Log.d("data", results.toString())
             results?.let {
                 searchAdapter.submitList(results)

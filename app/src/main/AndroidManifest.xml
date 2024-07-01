@@ -34,7 +34,9 @@
             android:name=".GroupChangeActivity">
         </activity>
 
-
+        <activity
+            android:name=".GameEventActivity">
+        </activity>
 
         <activity
             android:name=".GalleryActivity"
