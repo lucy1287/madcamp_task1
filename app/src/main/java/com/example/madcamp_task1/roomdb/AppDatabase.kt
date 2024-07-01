@@ -6,13 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [Event::class, Image::class, Profile::class], version = 1, exportSchema = false)
+@Database(entities = [Event::class, Image::class, Profile::class, Game::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun eventDao(): EventDao
     abstract fun imageDao(): ImageDao
     abstract fun profileDao(): ProfileDao
+    abstract fun gameDao(): GameDao
 
     companion object {
         @Volatile
@@ -32,3 +33,4 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+

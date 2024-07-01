@@ -26,6 +26,7 @@ import com.example.madcamp_task1.roomdb.ProfileViewModel
 class GameEventActivity : AppCompatActivity() {
 
     private lateinit var editTextEventTitle: EditText
+    private lateinit var editTextEventScore: EditText
     private lateinit var buttonSaveEvent: Button
     private lateinit var selectedDate: String
 
@@ -47,14 +48,19 @@ class GameEventActivity : AppCompatActivity() {
         initSearchView()
 
         editTextEventTitle = binding.editTextEventTitle
+  //      editTextEventScore = binding.editTextEventScore
+
         buttonSaveEvent = binding.buttonSaveEvent
+
 
         selectedDate = intent.getStringExtra("selectedDate") ?: ""
 
         buttonSaveEvent.setOnClickListener {
             val eventTitle = editTextEventTitle.text.toString()
+            val eventScore = editTextEventScore.text.toString()
             val resultIntent = Intent()
             resultIntent.putExtra("eventTitle", eventTitle)
+            resultIntent.putExtra("eventScore", eventScore)
             resultIntent.putExtra("selectedDate", selectedDate)
             setResult(Activity.RESULT_OK, resultIntent)
             finish()
