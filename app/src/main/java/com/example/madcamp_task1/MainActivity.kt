@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val tabLayout : TabLayout = findViewById(R.id.tab_layout)
         val profileFragment: Fragment = ProfileFragment()
         val galleryFragment: Fragment = GalleryFragment()
-//        val mapFragment: Fragment = MapFragment()
+        val calendarFragment: Fragment = CalendarFragment()
 
         supportFragmentManager.beginTransaction().replace(R.id.main_view, profileFragment).commit()
         // default tab
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     2 -> {
                         // Map Tab
-//                        supportFragmentManager.beginTransaction().replace(R.id.main_view, mapFragment).commit()
+                        supportFragmentManager.beginTransaction().replace(R.id.main_view, calendarFragment).commit()
                     }
                 }
             }
