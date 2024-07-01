@@ -3,6 +3,7 @@ package com.example.madcamp_task1.roomdb
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.madcamp_task1.roomdb.AppDatabase
 import com.example.madcamp_task1.roomdb.Profile
@@ -28,5 +29,9 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
 
     fun getProfileByPhoneNum(phoneNum: String): LiveData<Profile> {
         return profileDao.getProfileByPhoneNum(phoneNum)
+    }
+
+    fun searchDatabase(searchQuery: String): LiveData<List<Profile>> {
+        return profileDao.searchDatabase(searchQuery).asLiveData()
     }
 }
