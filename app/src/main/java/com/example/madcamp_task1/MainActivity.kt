@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayout
 
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         val galleryFragment: Fragment = GalleryFragment()
 //        val mapFragment: Fragment = MapFragment()
 
-        supportFragmentManager.beginTransaction().replace(R.id.main_view, galleryFragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.main_view, profileFragment).commit()
         // default tab
 
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
