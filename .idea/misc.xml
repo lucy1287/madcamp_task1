@@ -4,15 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1255" />
+        <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/drawable/item_background_event_participant.xml" value="0.1755" />
+        <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/drawable/item_border.xml" value="0.1765" />
         <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/activity_gallery.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/activity_gameevent.xml" value="0.19270833333333334" />
         <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/activity_groupchange.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/activity_kk.xml" value="0.12239583333333333" />
         <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/activity_main.xml" value="0.12604166666666666" />
         <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/activity_manage.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/background_event_participant.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/dialog_add_participant.xml" value="0.1" />
+        <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/dialog_add_person.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/dialog_new_event_name.xml" value="0.23177083333333334" />
         <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/dialog_new_event_title.xml" value="0.10833333333333334" />
+        <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/fragment_calendar.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/fragment_gallery.xml" value="0.16" />
-        <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/fragment_manage.xml" value="0.1" />
+        <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/fragment_manage.xml" value="0.128" />
         <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/fragment_profile.xml" value="0.19270833333333334" />
         <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/item_event.xml" value="0.13541666666666666" />
         <entry key="..\:/Users/hayeo/AndroidStudioProjects/madcamp_task1/app/src/main/res/layout/item_event_cardview.xml" value="0.21979166666666666" />
