@@ -7,15 +7,39 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <ImageView
+        android:id="@+id/gameEventImage"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:src="@drawable/gameevent"
+        android:contentDescription="Event Image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="경기 제목    "
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/gameEventImage"
+        app:layout_constraintStart_toStartOf="parent">
+    </TextView>
+
     <TextView
         android:id="@+id/tv_event_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="경기 제목"
+        android:text="없음"
         android:textSize="23sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:layout_constraintStart_toEndOf="@+id/tv_title">
     </TextView>
 
     <EditText
@@ -23,18 +47,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/tv_event_title"
-        android:hint="Enter Event Title"/>
+        android:hint="경기 제목을 입력하세요"/>
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="경기 결과    "
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEventTitle"
+        app:layout_constraintStart_toStartOf="parent">
+    </TextView>
 
     <TextView
         android:id="@+id/tv_event_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="경기 결과"
+        android:text="없음"
         android:textSize="23sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEventTitle"
-        app:layout_constraintStart_toStartOf="parent">
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@+id/tv_score"
+        app:layout_constraintStart_toEndOf="@+id/tv_score">
     </TextView>
 
     <EditText
@@ -42,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/tv_event_score"
-        android:hint="Enter Event Title"/>
+        android:hint="경기 결과를 입력하세요"/>
 
     <TextView
         android:id="@+id/tv_event_participant"
@@ -52,17 +89,11 @@
         android:text="경기 참가자"
         android:textSize="23sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/editTextEventScore"
         app:layout_constraintStart_toStartOf="parent">
     </TextView>
 
-    <Button
-        android:id="@+id/btn_add_participant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="참가자 추가"
-        app:layout_constraintTop_toBottomOf="@+id/tv_event_participant"
-        app:layout_constraintStart_toStartOf="parent"/>
 
     <LinearLayout
         android:id="@+id/linearLayoutProfiles"
@@ -70,7 +101,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/btn_add_participant"
+        app:layout_constraintTop_toBottomOf="@+id/tv_event_participant"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_add_participant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="참가자 추가"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutProfiles"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
@@ -78,6 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save Event"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
