@@ -11,6 +11,9 @@ interface GameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(game: Game)
 
-    @Query("SELECT * FROM game_table WHERE gameDate = :selectedDate")
+    @Query("SELECT * FROM game_table ORDER BY gameDate DESC")
+    fun getAllGames() : LiveData<List<Game>>
+
+    @Query("SELECT gameDate, gameMembers, gameScore, gameTitle FROM game_table WHERE gameDate = :selectedDate")
     fun getGameByDate(selectedDate: String): LiveData<Game>
 }

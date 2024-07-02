@@ -10,6 +10,8 @@ import kotlinx.coroutines.launch
 class GameViewModel(application: Application) : AndroidViewModel(application) {
     private val gameDao = AppDatabase.getInstance(application).gameDao()
 
+    val getAllGames: LiveData<List<Game>> = gameDao.getAllGames()
+
     fun insert(game: Game) {
         viewModelScope.launch(Dispatchers.IO) {
             gameDao.insert(game)
