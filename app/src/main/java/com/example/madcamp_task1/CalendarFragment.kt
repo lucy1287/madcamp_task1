@@ -3,8 +3,13 @@ package com.example.madcamp_task1
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -120,10 +125,10 @@ class CalendarFragment : Fragment() {
                 }
 
                 override fun decorate(view: DayViewFacade) {
-                    view.addSpan(DotSpan(5F, Color.BLUE))
+                    view.addSpan(DotSpan(5F, Color.parseColor("#FF03DAC5")))
                     val gameTitle = events[day]
                     if (!gameTitle.isNullOrBlank()) {
-                        view.addSpan(TextSpan(gameTitle, Color.GRAY))
+                        view.addSpan(TextSpan(gameTitle, Color.parseColor("#2535FF")))
                     }
                 }
             })

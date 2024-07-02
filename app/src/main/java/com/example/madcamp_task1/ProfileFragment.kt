@@ -107,7 +107,7 @@ class ProfileFragment : Fragment() {
             val newgroupname = data?.getStringExtra("groupName")
             if (newgroupname != null && phonenum != null) {
                 currentProfile?.let {
-                    it.groupname = if (newgroupname.isEmpty()) "None" else newgroupname
+                    it.groupname = if (newgroupname.isEmpty()) "없음" else newgroupname
                     profileViewModel.updateProfile(it)
                     Toast.makeText(requireContext(), "Insert into Database {$newgroupname}", Toast.LENGTH_SHORT).show()
                 }
@@ -133,7 +133,7 @@ class ProfileFragment : Fragment() {
                     val name = it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
                     val number = it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
 
-                    val profile = Profile(name = name, phonenum = normalizePhoneNumber(number), groupname = "None")
+                    val profile = Profile(name = name, phonenum = normalizePhoneNumber(number), groupname = "없음")
                     profileViewModel.insertProfile(profile)
                     Log.d("ProfileFragment", "Inserting profile: $profile")
                 }

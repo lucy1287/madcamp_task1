@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -182,14 +183,16 @@ class GameEventActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     private fun createProfileTextView(profileName: String): TextView {
         val textView = TextView(this).apply {
-            text = "$profileName  X"
-            setTextColor(ContextCompat.getColor(this@GameEventActivity, android.R.color.black))
+            text = " $profileName  X"
+            setTextColor(ContextCompat.getColor(this@GameEventActivity, android.R.color.white))
             setBackgroundResource(R.drawable.item_background_event_participant)
-            setPadding(16, 8, 16, 8)
+            setPadding(30, 15, 30, 15)
+            setTypeface(null, Typeface.BOLD)
             setOnClickListener {
                 (this@GameEventActivity.binding.linearLayoutProfiles as ViewGroup).removeView(this)
             }
         }
+
         return textView
     }
 

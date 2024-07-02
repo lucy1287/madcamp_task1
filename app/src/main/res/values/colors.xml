@@ -10,6 +10,7 @@
     <color name="black">#FF000000</color>
     <color name="light_grey">#ADB5BD</color>
     <color name="dark_grey">#495057</color>
+    <color name="very_light_blue">#5E85FF</color>
     <color name="light_blue">#5E85FF</color>
     <color name="dark_blue">#2535FF</color>
 
