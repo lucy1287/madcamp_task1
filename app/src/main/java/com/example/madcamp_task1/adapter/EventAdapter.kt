@@ -43,6 +43,13 @@ class EventAdapter(private val events: List<Event>) :
         fun bind(event: Event){
             binding.tvEventTitle.text = event.title
             binding.tvEventDetail.text = event.detail
+
+            val year: String = event.createdDate.substring(0, 2)
+            val month: String = event.createdDate.substring(2, 4)
+            val day: String = event.createdDate.substring(4, 6)
+
+            val formattedDate = "20$year/$month/$day"
+            binding.tvEventCreatedDate.text = formattedDate
         }
     }
 }
