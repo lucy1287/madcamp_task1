@@ -22,6 +22,7 @@ import com.example.madcamp_task1.roomdb.Profile
 import com.example.madcamp_task1.databinding.FragmentProfileBinding
 import com.example.madcamp_task1.roomdb.ProfileViewModel
 
+
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
@@ -58,6 +59,7 @@ class ProfileFragment : Fragment() {
         ) {
             Log.d("ProfileFragment", "Requesting READ_CONTACTS permission")
             requestPermissions(
+
                 arrayOf(Manifest.permission.READ_CONTACTS),
                 READ_CONTACTS_PERMISSION_CODE
             )
@@ -65,7 +67,6 @@ class ProfileFragment : Fragment() {
             Log.d("ProfileFragment", "READ_CONTACTS permission already granted")
             loadContacts()
         }
-
 
         initializeViews()
 
@@ -83,6 +84,7 @@ class ProfileFragment : Fragment() {
                 if (it.isEmpty()) {
                     Toast.makeText(requireContext(), "Profile list is empty.", Toast.LENGTH_SHORT).show()
                 }
+
             }
         }
     }
@@ -99,6 +101,7 @@ class ProfileFragment : Fragment() {
                         it.groupname = if (newgroupname.isEmpty()) "None" else newgroupname
                         profileViewModel.updateProfile(it)
                     }
+
                 }
             }
         }
@@ -145,6 +148,7 @@ class ProfileFragment : Fragment() {
             READ_CONTACTS_PERMISSION_CODE -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     Log.d("ProfileFragment", "READ_CONTACTS permission granted")
+
                     loadContacts()
                 } else {
                     // Permission denied, show message or handle accordingly

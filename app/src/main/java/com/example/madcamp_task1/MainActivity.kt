@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         val galleryFragment: Fragment = GalleryFragment()
         val calendarFragment: Fragment = CalendarFragment()
 
+
         supportFragmentManager.beginTransaction().replace(R.id.main_view, profileFragment).commit()
         // default tab
 
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
                     2 -> {
                         // Map Tab
                         supportFragmentManager.beginTransaction().replace(R.id.main_view, calendarFragment).commit()
+
                     }
                 }
             }

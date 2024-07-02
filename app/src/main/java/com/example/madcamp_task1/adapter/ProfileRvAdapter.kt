@@ -12,6 +12,7 @@ class ProfileRvAdapter(
     private val itemClickListener: OnItemClickListener
 ) : ListAdapter<Profile, ProfileRvAdapter.ProfileViewHolder>(ProfileDiffCallback()) {
 
+
     interface OnItemClickListener {
         fun onItemClick(profile: Profile)
     }
