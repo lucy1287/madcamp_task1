@@ -5,8 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.madcamp_task1.roomdb.AppDatabase
-import com.example.madcamp_task1.roomdb.Profile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

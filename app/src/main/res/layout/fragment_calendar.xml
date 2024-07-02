@@ -10,6 +10,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:mcv_showOtherDates="all"
-        app:mcv_selectionColor="@color/red"/>
+        app:mcv_selectionColor="@color/teal_200"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

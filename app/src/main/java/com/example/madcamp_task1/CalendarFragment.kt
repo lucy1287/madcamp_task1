@@ -75,7 +75,7 @@ class CalendarFragment : Fragment() {
         // Intent를 사용하여 selectedDate를 전달
         val intent = Intent(activity, GameEventActivity::class.java)
         intent.putExtra("selectedDate", selectedDate)
-        Toast.makeText(requireContext(), "Sending {$selectedDate}", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(), "Sending {$selectedDate}", Toast.LENGTH_SHORT).show()
         startActivityForResult(intent, 1)
     }
 
@@ -106,8 +106,8 @@ class CalendarFragment : Fragment() {
                 )
                 gameViewModel.insert(game)
 
-                Toast.makeText(requireContext(), "Insert into Database", Toast.LENGTH_SHORT).show()
-                Toast.makeText(requireContext(), "Insert Group Members {$gameMembers}", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), "Insert into Database", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), "Insert Group Members {$gameMembers}", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -120,10 +120,10 @@ class CalendarFragment : Fragment() {
                 }
 
                 override fun decorate(view: DayViewFacade) {
-                    view.addSpan(DotSpan(5F, Color.RED))
+                    view.addSpan(DotSpan(5F, Color.BLUE))
                     val gameTitle = events[day]
                     if (!gameTitle.isNullOrBlank()) {
-                        view.addSpan(TextSpan(gameTitle, Color.BLACK))
+                        view.addSpan(TextSpan(gameTitle, Color.GRAY))
                     }
                 }
             })
