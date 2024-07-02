@@ -18,18 +18,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.madcamp_task1.adapter.ProfileRvAdapter
-import com.example.madcamp_task1.roomdb.Profile
 import com.example.madcamp_task1.databinding.FragmentProfileBinding
+import com.example.madcamp_task1.roomdb.Profile
 import com.example.madcamp_task1.roomdb.ProfileViewModel
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private val profileViewModel: ProfileViewModel by viewModels()
+    private var currentProfile: Profile? = null
 
     private val adapter by lazy {
         ProfileRvAdapter(object : ProfileRvAdapter.OnItemClickListener {
             override fun onItemClick(profile: Profile) {
+                currentProfile = profile
                 val intent = Intent(requireContext(), GroupChangeActivity::class.java).apply {
                     putExtra("name", profile.name)
                     putExtra("phoneNum", profile.phonenum)
@@ -49,7 +51,6 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         // Getting Permission for contact data
@@ -65,7 +66,6 @@ class ProfileFragment : Fragment() {
             Log.d("ProfileFragment", "READ_CONTACTS permission already granted")
             loadContacts()
         }
-
 
         initializeViews()
 
@@ -87,6 +87,18 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Observe LiveData for profile updates
+        profileViewModel.allProfiles.observe(viewLifecycleOwner) { profiles ->
+            profiles?.let {
+                adapter.submitList(it)
+            }
+        }
+    }
+
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -94,11 +106,10 @@ class ProfileFragment : Fragment() {
             val phonenum = data?.getStringExtra("phoneNum")
             val newgroupname = data?.getStringExtra("groupName")
             if (newgroupname != null && phonenum != null) {
-                profileViewModel.getProfileByPhoneNum(phonenum).observe(viewLifecycleOwner) { profile ->
-                    profile?.let {
-                        it.groupname = if (newgroupname.isEmpty()) "None" else newgroupname
-                        profileViewModel.updateProfile(it)
-                    }
+                currentProfile?.let {
+                    it.groupname = if (newgroupname.isEmpty()) "없음" else newgroupname
+                    profileViewModel.updateProfile(it)
+                    Toast.makeText(requireContext(), "Insert into Database {$newgroupname}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -118,18 +129,15 @@ class ProfileFragment : Fragment() {
 
         cursor?.let {
             if (it.count > 0) {
-//                Toast.makeText(requireContext(), "Contacts found: ${it.count}.", Toast.LENGTH_SHORT).show()
                 while (it.moveToNext()) {
                     val name = it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
                     val number = it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
 
-                    val profile = Profile(name = name, phonenum = normalizePhoneNumber(number), groupname = "None")
+                    val profile = Profile(name = name, phonenum = normalizePhoneNumber(number), groupname = "없음")
                     profileViewModel.insertProfile(profile)
                     Log.d("ProfileFragment", "Inserting profile: $profile")
-
                 }
-            }
-            else {
+            } else {
                 Log.d("ProfileFragment", "No contacts found")
             }
             it.close()
@@ -137,9 +145,7 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
     ) {
         when (requestCode) {
             READ_CONTACTS_PERMISSION_CODE -> {
@@ -147,8 +153,6 @@ class ProfileFragment : Fragment() {
                     Log.d("ProfileFragment", "READ_CONTACTS permission granted")
                     loadContacts()
                 } else {
-                    // Permission denied, show message or handle accordingly
-                    // For now, we simply close the app
                     Log.d("ProfileFragment", "READ_CONTACTS permission denied")
                     requireActivity().finish()
                 }
@@ -157,6 +161,18 @@ class ProfileFragment : Fragment() {
     }
 
     private fun normalizePhoneNumber(phoneNumber: String): String {
-        return phoneNumber.replace("[^0-9]".toRegex(), "")
+        // Remove all non-numeric characters
+        val cleanNumber = phoneNumber.replace("[^0-9]".toRegex(), "")
+
+        // Check if the phone number has 11 digits
+        if (cleanNumber.length == 11) {
+            return cleanNumber.substring(0, 3) + "-" + cleanNumber.substring(3, 7) + "-" + cleanNumber.substring(7)
+        }
+        else if (cleanNumber.length == 10){
+            return cleanNumber.substring(0, 2) + "-" + cleanNumber.substring(2, 6) + "-" + cleanNumber.substring(7)
+        }
+        else {
+            return cleanNumber
+        }
     }
 }

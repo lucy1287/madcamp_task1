@@ -21,21 +21,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/baseline_person_24"
-            android:text="@string/profile" />
+            android:text="PROFILE" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/user_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/baseline_image_24"
-            android:text="@string/gallery" />
+            android:text="GALLERY" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/setting_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/baseline_location_on_24"
-            android:text="@string/map" />
+            android:icon="@drawable/baseline_edit_calendar_24"
+            android:text="GAMES" />
 
     </com.google.android.material.tabs.TabLayout>
 

@@ -12,6 +12,7 @@ class ProfileRvAdapter(
     private val itemClickListener: OnItemClickListener
 ) : ListAdapter<Profile, ProfileRvAdapter.ProfileViewHolder>(ProfileDiffCallback()) {
 
+
     interface OnItemClickListener {
         fun onItemClick(profile: Profile)
     }
@@ -26,6 +27,19 @@ class ProfileRvAdapter(
         holder.bind(profile, itemClickListener)
     }
 
+    override fun onBindViewHolder(
+        holder: ProfileViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if (payloads.isNotEmpty()) {
+            val groupname = payloads[0] as String
+            holder.updateGroupName(groupname)
+        } else {
+            onBindViewHolder(holder, position)
+        }
+    }
+
     inner class ProfileViewHolder(private val binding: ItemProfileBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(profile: Profile, clickListener: OnItemClickListener) {
@@ -36,6 +50,10 @@ class ProfileRvAdapter(
                 clickListener.onItemClick(profile)
             }
         }
+
+        fun updateGroupName(groupname: String) {
+            binding.profileGroupNameTv.text = groupname
+        }
     }
 
     class ProfileDiffCallback : DiffUtil.ItemCallback<Profile>() {
@@ -45,6 +63,10 @@ class ProfileRvAdapter(
 
         override fun areContentsTheSame(oldItem: Profile, newItem: Profile): Boolean {
             return oldItem == newItem
+        }
+
+        override fun getChangePayload(oldItem: Profile, newItem: Profile): Any? {
+            return if (oldItem.groupname != newItem.groupname) newItem.groupname else null
         }
     }
 }

@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class Profile(
     @PrimaryKey val phonenum: String,
     val name: String,
-    var groupname: String = "None"
+    var groupname: String = "없음"
 )
