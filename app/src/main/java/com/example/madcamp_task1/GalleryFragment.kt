@@ -33,6 +33,7 @@ class GalleryFragment : Fragment() {
     private lateinit var eventViewModel: EventViewModel
     private lateinit var events: LiveData<List<Event>>
     private val REQUEST_CODE_READ_EXTERNAL_STORAGE = 1
+    private var isViewInitialized = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,13 +53,19 @@ class GalleryFragment : Fragment() {
         ) {
             // 권한이 허용되지 않았으면 요청
             requestStoragePermission()
+            initializeViews()
         } else {
             // 권한이 이미 허용된 경우, 콘텐츠 접근을 진행
             initializeViews()
         }
 
         binding.btnNewEvent.setOnClickListener {
-            showNewEventDialog()
+            if (isViewInitialized) {
+                showNewEventDialog()
+            } else {
+                // 초기화가 완료되지 않은 경우
+                Log.e("Error", "View is not initialized yet")
+            }
         }
     }
 
@@ -84,6 +91,7 @@ class GalleryFragment : Fragment() {
         })
 
         binding.rvEventList.layoutManager = LinearLayoutManager(requireContext())
+        isViewInitialized = true
     }
 
     private fun showNewEventDialog() {
