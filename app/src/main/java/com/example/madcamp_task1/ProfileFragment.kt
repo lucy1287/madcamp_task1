@@ -19,8 +19,13 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.madcamp_task1.adapter.ProfileRvAdapter
 import com.example.madcamp_task1.databinding.FragmentProfileBinding
+import com.example.madcamp_task1.roomdb.Game
 import com.example.madcamp_task1.roomdb.Profile
 import com.example.madcamp_task1.roomdb.ProfileViewModel
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import org.threeten.bp.LocalDate
 
 class ProfileFragment : Fragment() {
 
@@ -36,6 +41,7 @@ class ProfileFragment : Fragment() {
                     putExtra("name", profile.name)
                     putExtra("phoneNum", profile.phonenum)
                     putExtra("groupName", profile.groupname)
+                    putStringArrayListExtra("skills", ArrayList(profile.skills.map { it.toString()}))
                 }
                 startActivityForResult(intent, REQUEST_CODE_GROUP_NAME)
             }
@@ -105,9 +111,11 @@ class ProfileFragment : Fragment() {
         if (requestCode == REQUEST_CODE_GROUP_NAME && resultCode == Activity.RESULT_OK) {
             val phonenum = data?.getStringExtra("phoneNum")
             val newgroupname = data?.getStringExtra("groupName")
+            val skills = data?.getStringArrayListExtra("skills")
             if (newgroupname != null && phonenum != null) {
                 currentProfile?.let {
                     it.groupname = if (newgroupname.isEmpty()) "없음" else newgroupname
+                    it.skills = skills?.map { skill -> skill.toFloat() } as ArrayList<Float>
                     profileViewModel.updateProfile(it)
                     Toast.makeText(requireContext(), "Insert into Database {$newgroupname}", Toast.LENGTH_SHORT).show()
                 }
@@ -133,9 +141,24 @@ class ProfileFragment : Fragment() {
                     val name = it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
                     val number = it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
 
-                    val profile = Profile(name = name, phonenum = normalizePhoneNumber(number), groupname = "없음")
-                    profileViewModel.insertProfile(profile)
-                    Log.d("ProfileFragment", "Inserting profile: $profile")
+                    // 기본 값을 가진 프로필 생성
+                    val defaultProfile = Profile(
+                        name = name,
+                        phonenum =normalizePhoneNumber(number),
+                        groupname = "없음",
+                        skills = arrayListOf(8f, 8f, 8f, 8f, 8f)
+                    )
+
+                    // Room 데이터베이스에서 프로필 가져오기
+                    profileViewModel.getProfileByPhoneNum(number).observe(viewLifecycleOwner) { existingProfile ->
+                        val profile = existingProfile ?: defaultProfile
+                        profileViewModel.insertProfile(profile)
+                        Log.d("ProfileFragment 확인", "Inserting or updating profile: $profile")
+                    }
+
+                    //val profile = Profile(name = name, phonenum = normalizePhoneNumber(number), groupname = "없음", skills = skills)
+                    //profileViewModel.insertProfile(profile)
+                    //Log.d("ProfileFragment", "Inserting profile: $profile")
                 }
             } else {
                 Log.d("ProfileFragment", "No contacts found")

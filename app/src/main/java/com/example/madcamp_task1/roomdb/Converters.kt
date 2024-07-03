@@ -27,4 +27,15 @@ class Converters {
         val listType = object : TypeToken<ArrayList<String>>() {}.type
         return Gson().fromJson(value, listType)
     }
+
+    @TypeConverter
+    fun fromArrayList(value: String): ArrayList<Float> {
+        val listType = object : TypeToken<ArrayList<Float>>() {}.type
+        return Gson().fromJson(value, listType)
+    }
+
+    @TypeConverter
+    fun fromFloatArrayList(list: ArrayList<Float>): String {
+        return Gson().toJson(list)
+    }
 }
