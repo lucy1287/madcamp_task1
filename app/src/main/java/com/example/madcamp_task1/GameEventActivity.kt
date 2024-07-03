@@ -9,10 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
@@ -192,6 +189,14 @@ class GameEventActivity : AppCompatActivity() {
                 (this@GameEventActivity.binding.linearLayoutProfiles as ViewGroup).removeView(this)
             }
         }
+
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply {
+            setMargins(0, 7, 0, 0)
+        }
+        textView.layoutParams = layoutParams
 
         return textView
     }
