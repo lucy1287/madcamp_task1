@@ -66,8 +66,6 @@ class GameEventActivity : AppCompatActivity() {
         val intent = intent
         selectedDate = intent.getStringExtra("selectedDate") ?: ""
 
-//        Toast.makeText(this, "Received Game Info: {$selectedDate}", Toast.LENGTH_SHORT).show()
-
         // RoomDB에서 해당 날짜의 게임 정보를 가져와 UI에 표시
         gameViewModel.getGameByDate(selectedDate).observe(this, Observer { game ->
             game?.let {
@@ -120,9 +118,6 @@ class GameEventActivity : AppCompatActivity() {
 
             // 결과 전송
             setResult(Activity.RESULT_OK, resultIntent)
-//            Toast.makeText(this, "Sending Back Game Info: {$selectedDate, $eventTitle, $eventScore}", Toast.LENGTH_SHORT).show()
-//            Toast.makeText(this, "Members: {$eventMembers}", Toast.LENGTH_SHORT).show()
-
             finish()
         }
 
