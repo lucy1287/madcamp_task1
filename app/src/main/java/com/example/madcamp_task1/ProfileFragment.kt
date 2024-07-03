@@ -13,9 +13,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.madcamp_task1.adapter.ProfileRvAdapter
 import com.example.madcamp_task1.databinding.FragmentProfileBinding
@@ -102,6 +104,65 @@ class ProfileFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
+
+        // 데이터베이스에서 프로필 로드
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_CONTACTS)
+            == PackageManager.PERMISSION_GRANTED) {
+            loadContacts()
+        }
+
+        initSearchView()
+    }
+
+    private fun observeProfiles() {
+        profileViewModel.allProfiles.observe(viewLifecycleOwner, Observer { profiles ->
+            profiles?.let {
+                // Sort profiles by name
+                val sortedProfiles = profiles.sortedBy { it.name }
+                adapter.submitList(sortedProfiles)
+            }
+        })
+    }
+
+    private fun initSearchView() {
+        binding.searchView.apply {
+            isSubmitButtonEnabled = false // optional: change if needed
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText != null) {
+                        searchDatabase(newText)
+                    }
+                    else {
+                        observeProfiles() // Show sorted list when search view is empty
+                    }
+                    scrollToTop()
+                    return true
+                }
+            })
+        }
+    }
+
+    private fun searchDatabase(query: String) {
+        if (query.isNotBlank()) {
+            val searchQuery = "%$query%"
+            profileViewModel.searchDatabase(searchQuery).observe(viewLifecycleOwner, Observer { results ->
+                results?.let {
+                    adapter.submitList(results)
+                }
+            })
+        } else {
+            observeProfiles() // Show sorted list when search query is empty
+        }
+    }
+
+    private fun scrollToTop() {
+        if (adapter.itemCount > 0) {
+            binding.profileRecyclerView.smoothScrollToPosition(0)
+        }
     }
 
 
@@ -112,9 +173,9 @@ class ProfileFragment : Fragment() {
             val phonenum = data?.getStringExtra("phoneNum")
             val newgroupname = data?.getStringExtra("groupName")
             val skills = data?.getStringArrayListExtra("skills")
-            if (newgroupname != null && phonenum != null) {
+            if (phonenum != null) {
                 currentProfile?.let {
-                    it.groupname = if (newgroupname.isEmpty()) "없음" else newgroupname
+                    it.groupname = if (newgroupname == null) "없음" else newgroupname
                     it.skills = skills?.map { skill -> skill.toFloat() } as ArrayList<Float>
                     profileViewModel.updateProfile(it)
 
@@ -158,9 +219,14 @@ class ProfileFragment : Fragment() {
 
                     // Room 데이터베이스에서 프로필 가져오기
                     profileViewModel.getProfileByPhoneNum(number).observe(viewLifecycleOwner) { existingProfile ->
-                        val profile = existingProfile ?: defaultProfile
-                        profileViewModel.insertProfile(profile)
-                        Log.d("ProfileFragment 확인", "Inserting or updating profile: $profile")
+                        if (existingProfile == null) {
+                            // 데이터베이스에 프로필이 없으면 새로 삽입
+                            profileViewModel.insertProfile(defaultProfile)
+                            Log.d("ProfileFragment 확인", "Inserting default profile: $defaultProfile")
+                        } else {
+                            // 이미 존재하는 경우 아무 작업도 필요 없음
+                            Log.d("ProfileFragment 확인", "Profile already exists: $existingProfile")
+                        }
                     }
 
                     //val profile = Profile(name = name, phonenum = normalizePhoneNumber(number), groupname = "없음", skills = skills)
