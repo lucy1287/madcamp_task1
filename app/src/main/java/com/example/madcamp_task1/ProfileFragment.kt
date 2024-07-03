@@ -89,7 +89,7 @@ class ProfileFragment : Fragment() {
                 adapter.submitList(it)
 
                 if (it.isEmpty()) {
-                    Toast.makeText(requireContext(), "Profile list is empty.", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "Profile list is empty.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -185,7 +185,7 @@ class ProfileFragment : Fragment() {
                         adapter.notifyItemChanged(position, newgroupname)
                     }
 
-                    Toast.makeText(requireContext(), "Insert into Database {$newgroupname}", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "Insert into Database {$newgroupname}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
