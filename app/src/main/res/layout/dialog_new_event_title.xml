@@ -7,20 +7,20 @@ android:paddingHorizontal="50dp"
 android:paddingVertical="10dp"
 android:layout_height="wrap_content">
 
-<TextView
+    <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    android:text="새 이벤트의 이름을 입력해주세요"
+    android:text="새 경기/연습 경기의 이름을 입력해주세요"
     android:layout_marginTop="20dp"
     android:textSize="17sp"
     android:textColor="@color/black"
     android:textStyle="bold"
     android:id="@+id/dialog_title_tv" />
 
-<EditText
+    <EditText
     android:id="@+id/et_new_event_title"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
@@ -32,5 +32,31 @@ android:layout_height="wrap_content">
     app:layout_constraintStart_toStartOf="@id/dialog_title_tv"
     app:layout_constraintEnd_toEndOf="@id/dialog_title_tv"
     app:layout_constraintTop_toBottomOf="@id/dialog_title_tv" />
+
+    <TextView
+        android:id="@+id/tv_new_event_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_new_event_title"
+        android:text="새 경기/연습 경기의 상세정보를 입력해주세요"
+        android:layout_marginTop="20dp"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_new_event_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:hint="new event"
+        android:paddingStart="10dp"
+        android:paddingVertical="5dp"
+        app:layout_constraintStart_toStartOf="@id/dialog_title_tv"
+        app:layout_constraintEnd_toEndOf="@id/dialog_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/tv_new_event_detail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,6 +34,7 @@ class GroupChangeActivity : AppCompatActivity() {
     private var currentEnduranceValue = 8
     private var currentSkillValue = 8
     private var currentTeamworkValue = 8
+    private lateinit var skills: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +44,19 @@ class GroupChangeActivity : AppCompatActivity() {
         val name = intent.getStringExtra("name")
         val phonenum = intent.getStringExtra("phoneNum")
         val groupname = intent.getStringExtra("groupName")
+        val skillsFromIntent = intent.getStringArrayListExtra("skills")
 
         binding.nameTv.text = name
         binding.phonenumTv.text = phonenum
         binding.groupnameTv.text = groupname
+
+        if (skillsFromIntent?.isNotEmpty() == true) {
+            currentStrengthValue = skillsFromIntent[0].toFloat().toInt()
+            currentAgilityValue = skillsFromIntent[1].toFloat().toInt()
+            currentEnduranceValue = skillsFromIntent[2].toFloat().toInt()
+            currentSkillValue = skillsFromIntent[3].toFloat().toInt()
+            currentTeamworkValue = skillsFromIntent[4].toFloat().toInt()
+        }
 
         binding.submitButton.setOnClickListener {
             val newgroupname = binding.groupNameEditText.text.toString()
@@ -54,6 +64,7 @@ class GroupChangeActivity : AppCompatActivity() {
                 putExtra("name", name)
                 putExtra("phoneNum", phonenum)
                 putExtra("groupName", newgroupname)
+                putStringArrayListExtra("skills", ArrayList(skills))
             }
             setResult(Activity.RESULT_OK, returnIntent)
             finish()
@@ -64,6 +75,13 @@ class GroupChangeActivity : AppCompatActivity() {
         }
 
         radarChart = binding.mapsearchdetailRadarChart
+        skills = arrayListOf(
+            currentStrengthValue.toString(),
+            currentAgilityValue.toString(),
+            currentEnduranceValue.toString(),
+            currentSkillValue.toString(),
+            currentTeamworkValue.toString()
+        )
         makeChart(currentStrengthValue, currentAgilityValue, currentEnduranceValue, currentSkillValue, currentTeamworkValue)
     }
 
@@ -139,6 +157,13 @@ class GroupChangeActivity : AppCompatActivity() {
                 currentSkillValue = 10 - seekBarSkill.progress
                 currentTeamworkValue = 10 - seekBarTeamwork.progress
 
+                skills = arrayListOf(
+                    currentStrengthValue.toString(),
+                    currentAgilityValue.toString(),
+                    currentEnduranceValue.toString(),
+                    currentSkillValue.toString(),
+                    currentTeamworkValue.toString()
+                )
                 makeChart(currentStrengthValue, currentAgilityValue, currentEnduranceValue, currentSkillValue, currentTeamworkValue)
             }
             .setNegativeButton("Cancel", null)
