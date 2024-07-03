@@ -6,7 +6,7 @@
 
 ---
 
-![ic_launcher_new.webp](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/8808ed1a-bf1d-4dbe-907f-473ff51089ff/ic_launcher_new.webp)
+![ic_launcher_new](https://github.com/lucy1287/madcamp_task1/assets/80579765/e033e3f4-f108-42bd-8f77-84f2abef0531)
 
 **MAD MANAGER에서는 동호회, 동아리 등에서 이루어진 스포츠 활동에 대한 여러 가지 정보들을 관리할 수 있습니다.**
 
