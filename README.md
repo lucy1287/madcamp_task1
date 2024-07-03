@@ -34,21 +34,21 @@
 
 ### TAB1
 
-[KakaoTalk_20240703_174436459.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/60961290-3be6-4450-bc83-38ec6ebd0d74/KakaoTalk_20240703_174436459.mp4)
+![tab1_1GIF](https://github.com/Kiriiin/PS_LeetCode/assets/75244521/1b024f9d-1292-4824-8516-b43103869268)
 
-[KakaoTalk_20240703_162242172.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/cea8b25f-8ee2-49a9-88c9-89befd719f19/KakaoTalk_20240703_162242172.mp4)
+![tab1_2GIF](https://github.com/Kiriiin/PS_LeetCode/assets/75244521/7cbaf3bc-a59a-44a1-8d84-9a5a627cd385)
 
 ### TAB2
 
-[KakaoTalk_20240703_162241056.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/f0e98f20-1825-4933-b5da-8d57bf1ee090/KakaoTalk_20240703_162241056.mp4)
+![tab2_1GIF](https://github.com/Kiriiin/PS_LeetCode/assets/75244521/f7ca7360-faba-4b67-b552-5181aa05b9fc)
 
-[KakaoTalk_20240703_173126483.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/b279942e-5027-4e43-9fba-22c5d3091793/KakaoTalk_20240703_173126483.mp4)
+![tab2_@GIF](https://github.com/Kiriiin/PS_LeetCode/assets/75244521/e92f1016-fdf7-4dd8-94e4-4d13eff0db46)
 
 ### TAB3
 
-[KakaoTalk_20240703_170307852.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/8d0f5d2e-1325-4948-a60e-821e8a39c99a/KakaoTalk_20240703_170307852.mp4)
+![tab3_1GIF](https://github.com/Kiriiin/PS_LeetCode/assets/75244521/310054f6-1351-48b5-8bc4-a734342b7aaf)
 
-[KakaoTalk_20240703_170316538.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/012284e6-49a9-4d33-bc83-0a347fe3e714/KakaoTalk_20240703_170316538.mp4)
+![tab3_2GIF](https://github.com/Kiriiin/PS_LeetCode/assets/75244521/b892e280-cced-40ba-be0f-90f0a3eeaab1)
 
 ## Details
 
