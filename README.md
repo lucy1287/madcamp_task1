@@ -16,10 +16,7 @@
 
 ---
 
-[문재혁](https://github.com/Kiriiin)
-
-
-[이은재](https://github.com/lucy1287)
+## [문재혁](https://github.com/Kiriiin) [이은재](https://github.com/lucy1287)
 
 ## Tech Stack
 
