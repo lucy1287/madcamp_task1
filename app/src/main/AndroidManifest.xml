@@ -47,6 +47,12 @@
             android:name=".GalleryActivity"
             android:exported="false">
         </activity>
+
+        <activity
+            android:name=".VideoPlayActivity"
+            android:exported="false">
+        </activity>
+
     </application>
 
 </manifest>

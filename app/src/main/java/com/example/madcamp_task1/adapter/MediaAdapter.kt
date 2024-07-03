@@ -1,12 +1,15 @@
 package com.example.madcamp_task1.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.VideoView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madcamp_task1.R
+import com.example.madcamp_task1.VideoPlayActivity
 import com.example.madcamp_task1.roomdb.Media
 import com.example.madcamp_task1.roomdb.MediaType
 
@@ -43,6 +46,17 @@ class MediaAdapter(private val mediaList: List<Media>) : RecyclerView.Adapter<Re
         when (holder.itemViewType) {
             VIEW_TYPE_IMAGE -> (holder as ImageViewHolder).bind(media)
             VIEW_TYPE_VIDEO -> (holder as VideoViewHolder).bind(media)
+        }
+
+        holder.itemView.setOnClickListener {
+            if(holder.itemViewType == VIEW_TYPE_IMAGE){
+
+            }
+            else if(holder.itemViewType == VIEW_TYPE_VIDEO){
+                val intent = Intent(holder.itemView.context, VideoPlayActivity::class.java)
+                intent.putExtra("uri", media.uri.toString())
+                ContextCompat.startActivity(holder.itemView.context, intent, null)
+            }
         }
     }
 
