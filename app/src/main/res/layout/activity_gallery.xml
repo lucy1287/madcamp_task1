@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:text="갤러리에서 불러오기"
         android:layout_margin="10dp"
+        android:background="@drawable/item_border"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
     </Button>

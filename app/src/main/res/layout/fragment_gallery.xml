@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:text="새 경기/연습 경기 추가"
         android:layout_margin="10dp"
+        android:background="@drawable/item_border"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
     </Button>
