@@ -1,10 +1,9 @@
 # MAD MANAGER
 
----
 
 ## Outline
 
----
+
 
 ![ic_launcher_new](https://github.com/lucy1287/madcamp_task1/assets/80579765/e033e3f4-f108-42bd-8f77-84f2abef0531)
 
@@ -14,13 +13,11 @@
 
 ## Team
 
----
 
 ## [문재혁](https://github.com/Kiriiin) [이은재](https://github.com/lucy1287)
 
 ## Tech Stack
 
----
 
 **Front-End : KOTLIN**
 
@@ -28,7 +25,6 @@
 
 ## Preview
 
----
 
 ### TAB1
 
@@ -55,7 +51,6 @@
 
 ## Details
 
----
 
 ### MAIN
 
