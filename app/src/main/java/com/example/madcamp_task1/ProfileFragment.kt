@@ -117,6 +117,13 @@ class ProfileFragment : Fragment() {
                     it.groupname = if (newgroupname.isEmpty()) "없음" else newgroupname
                     it.skills = skills?.map { skill -> skill.toFloat() } as ArrayList<Float>
                     profileViewModel.updateProfile(it)
+
+                    // 변경된 프로필의 위치를 찾아서 RecyclerView 업데이트
+                    val position = adapter.currentList.indexOfFirst { it.phonenum == phonenum }
+                    if (position != -1) {
+                        adapter.notifyItemChanged(position, newgroupname)
+                    }
+
                     Toast.makeText(requireContext(), "Insert into Database {$newgroupname}", Toast.LENGTH_SHORT).show()
                 }
             }
