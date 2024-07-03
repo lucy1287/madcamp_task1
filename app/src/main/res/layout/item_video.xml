@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
@@ -9,11 +8,11 @@
     android:padding="10dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="10dp">
-    <ImageView
-        android:id="@+id/imageView"
+
+    <VideoView
+        android:id="@+id/videoView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:layout_gravity="center">
-    </ImageView>
+        android:layout_gravity="center"/>
 </androidx.cardview.widget.CardView>
