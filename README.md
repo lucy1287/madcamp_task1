@@ -16,9 +16,10 @@
 
 ---
 
-[문재혁](https://www.notion.so/33b18ac1964b4a479b065ad57798aa83?pvs=21)
+[문재혁](https://github.com/Kiriiin)
 
-[이은재](https://www.notion.so/9a7e8d03723a4ffa91e83d24d3ced928?pvs=21)
+
+[이은재](https://github.com/lucy1287)
 
 ## Tech Stack
 
@@ -34,25 +35,25 @@
 
 ### TAB1
 
-<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/1b024f9d-1292-4824-8516-b43103869268  width="200" height="400"/>
+<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/1b024f9d-1292-4824-8516-b43103869268"  width="200" height="400"/>
 
-<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/7cbaf3bc-a59a-44a1-8d84-9a5a627cd385  width="200" height="400"/>
+<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/7cbaf3bc-a59a-44a1-8d84-9a5a627cd385"  width="200" height="400"/>
 
 
 ### TAB2
 
-<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/f7ca7360-faba-4b67-b552-5181aa05b9fc  width="200" height="400"/>
+<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/f7ca7360-faba-4b67-b552-5181aa05b9fc"  width="200" height="400"/>
 
 
-<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/e92f1016-fdf7-4dd8-94e4-4d13eff0db46  width="200" height="400"/>
+<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/e92f1016-fdf7-4dd8-94e4-4d13eff0db46"  width="200" height="400"/>
 
 
 ### TAB3
 
-<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/310054f6-1351-48b5-8bc4-a734342b7aaf  width="200" height="400"/>
+<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/310054f6-1351-48b5-8bc4-a734342b7aaf"  width="200" height="400"/>
 
 
-<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/b892e280-cced-40ba-be0f-90f0a3eeaab1  width="200" height="400"/>
+<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/b892e280-cced-40ba-be0f-90f0a3eeaab1"  width="200" height="400"/>
 
 
 ## Details
