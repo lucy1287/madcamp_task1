@@ -54,10 +54,12 @@ class MediaAdapter(private val mediaList: List<Media>) : RecyclerView.Adapter<Re
             }
             else if(holder.itemViewType == VIEW_TYPE_VIDEO){
                 val intent = Intent(holder.itemView.context, VideoPlayActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 intent.putExtra("uri", media.uri.toString())
                 ContextCompat.startActivity(holder.itemView.context, intent, null)
             }
         }
+
     }
 
     override fun getItemCount(): Int = mediaList.size
@@ -75,7 +77,10 @@ class MediaAdapter(private val mediaList: List<Media>) : RecyclerView.Adapter<Re
 
         fun bind(media: Media) {
             videoView.setVideoURI(media.uri)
-            videoView.start() // 필요한 경우, 비디오를 자동 재생하도록 설정
+            videoView.setOnPreparedListener {
+                // 비디오가 준비되면 재생 시작
+                videoView.start()
+            }
         }
     }
 }
