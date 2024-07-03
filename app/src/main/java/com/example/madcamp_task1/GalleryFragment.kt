@@ -103,8 +103,11 @@ class GalleryFragment : Fragment() {
             .setPositiveButton("확인") { dialog, whichButton ->
                 val etNewEventName =
                     constraintLayout.findViewById<View>(R.id.et_new_event_title) as EditText
-                val value = etNewEventName.text.toString()
-                Log.d("이름", value)
+                val etNewEventDetail =
+                    constraintLayout.findViewById<View>(R.id.et_new_event_detail) as EditText
+                val titleValue = etNewEventName.text.toString()
+                val detailValue = etNewEventDetail.text.toString()
+
                 dialog.dismiss()
 
                 val currentDate = Date()
@@ -112,8 +115,8 @@ class GalleryFragment : Fragment() {
                 val currentDateString = formatter.format(currentDate)
 
                 val newEvent = Event(
-                    title = value,
-                    detail = "detail",
+                    title = titleValue,
+                    detail = detailValue,
                     imageUrl = "ddd",
                     createdDate = currentDateString
                 )
