@@ -15,6 +15,7 @@ class ProfileRvAdapter(
 
     interface OnItemClickListener {
         fun onItemClick(profile: Profile)
+        fun onPhoneIconClick(phoneNum: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {
@@ -48,6 +49,10 @@ class ProfileRvAdapter(
             binding.profileGroupNameTv.text = profile.groupname
             binding.root.setOnClickListener {
                 clickListener.onItemClick(profile)
+            }
+
+            binding.phoneBookIcon.setOnClickListener {
+                clickListener.onPhoneIconClick(profile.phonenum)
             }
         }
 

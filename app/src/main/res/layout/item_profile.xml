@@ -21,7 +21,6 @@
         android:typeface="sans"
         android:layout_marginTop="5dp"
         android:layout_marginStart="8dp"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Name" />
@@ -49,5 +48,16 @@
         app:layout_constraintTop_toBottomOf="@+id/profileNameTv"
         app:layout_constraintStart_toStartOf="@+id/profileNameTv"
         tools:text="PhoneNum" />
+
+    <ImageView
+        android:id="@+id/phoneBookIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/baseline_phone_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

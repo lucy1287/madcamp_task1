@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
@@ -46,6 +47,12 @@ class ProfileFragment : Fragment() {
                     putStringArrayListExtra("skills", ArrayList(profile.skills.map { it.toString()}))
                 }
                 startActivityForResult(intent, REQUEST_CODE_GROUP_NAME)
+            }
+            override fun onPhoneIconClick(phoneNum: String) {
+                val dialIntent = Intent(Intent.ACTION_DIAL).apply {
+                    data = Uri.parse("tel:$phoneNum")
+                }
+                startActivity(dialIntent)
             }
         })
     }
