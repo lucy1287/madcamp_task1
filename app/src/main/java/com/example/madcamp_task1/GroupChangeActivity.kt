@@ -75,6 +75,8 @@ class GroupChangeActivity : AppCompatActivity() {
         }
 
         radarChart = binding.mapsearchdetailRadarChart
+        radarChart.description.isEnabled = true
+        radarChart.description.text = ""
         skills = arrayListOf(
             currentStrengthValue.toString(),
             currentAgilityValue.toString(),
