@@ -86,3 +86,8 @@
 - `SearchView`를 통해 TAB1의 선수 명단에서 이름으로 검색할 수 있고, 해당 팀원들의 경기 참가 여부를 저장할 수 있습니다
 - `RoomDB`를 이용하여 데이터베이스에 경기 제목, 경기 결과, 경기 참여 인원이 저장되고 불러집니다. 캘린더를 클릭하여 정보를 변경한 경우 데이터베이스에 새로운 정보가 업데이트 됩니다.
 - 경기 일정을 저장하면 캘린더에 해당 경기의 제목과 함께 저장되었다는 `dot`이 표시됩니다
+
+
+
+### Release
+https://drive.google.com/file/d/1ScsaZmOLtKDU6bex_XsdABS-QdnCiyWZ/view?usp=sharing
