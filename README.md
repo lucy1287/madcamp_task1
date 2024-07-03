@@ -34,21 +34,26 @@
 
 ### TAB1
 
-![tab1_1GIF](https://github.com/Kiriiin/PS_LeetCode/assets/75244521/1b024f9d-1292-4824-8516-b43103869268)
+<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/1b024f9d-1292-4824-8516-b43103869268  width="200" height="400"/>
 
-![tab1_2GIF](https://github.com/Kiriiin/PS_LeetCode/assets/75244521/7cbaf3bc-a59a-44a1-8d84-9a5a627cd385)
+<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/7cbaf3bc-a59a-44a1-8d84-9a5a627cd385  width="200" height="400"/>
+
 
 ### TAB2
 
-![tab2_1GIF](https://github.com/Kiriiin/PS_LeetCode/assets/75244521/f7ca7360-faba-4b67-b552-5181aa05b9fc)
+<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/f7ca7360-faba-4b67-b552-5181aa05b9fc  width="200" height="400"/>
 
-![tab2_@GIF](https://github.com/Kiriiin/PS_LeetCode/assets/75244521/e92f1016-fdf7-4dd8-94e4-4d13eff0db46)
+
+<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/e92f1016-fdf7-4dd8-94e4-4d13eff0db46  width="200" height="400"/>
+
 
 ### TAB3
 
-![tab3_1GIF](https://github.com/Kiriiin/PS_LeetCode/assets/75244521/310054f6-1351-48b5-8bc4-a734342b7aaf)
+<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/310054f6-1351-48b5-8bc4-a734342b7aaf  width="200" height="400"/>
 
-![tab3_2GIF](https://github.com/Kiriiin/PS_LeetCode/assets/75244521/b892e280-cced-40ba-be0f-90f0a3eeaab1)
+
+<img src="https://github.com/Kiriiin/PS_LeetCode/assets/75244521/b892e280-cced-40ba-be0f-90f0a3eeaab1  width="200" height="400"/>
+
 
 ## Details
 
