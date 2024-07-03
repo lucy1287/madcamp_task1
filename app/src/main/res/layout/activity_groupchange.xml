@@ -98,6 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="40dp"
+        android:background="@drawable/item_border"
         app:layout_constraintTop_toBottomOf="@+id/mapsearchdetail_radar_chart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
